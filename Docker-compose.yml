@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    networks:
+      - my_network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example_password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    networks:
+      - my_network
+
+  nodejs:
+    image: node:latest
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+    
